@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!--Bootstrap-->
+    <link
+      rel="stylesheet"
+      href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+
+    <!-- JavaScript -->
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"
+    ></script>
+    <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <title>{% block title %}4253 FRC{% endblock %}</title>
+  </head>
+  <body>
+    <!--Navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container-fluid">
+        <!--Logo-->
+        <a class="navbar-brand" href="/home">
+          <img src="../static/img/logo.png" alt="" width="50" height="50" />
+          <strong>4253 Raid Zero</strong>
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <!--Navbar items-->
+            <li class="nav-item">
+              <a class="nav-link" href="/home">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/scout">Scout</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/data">Data</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/download">Download</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    {% block content %} {% endblock %}
+  </body>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      background-color: #212121;
+      color: white;
+    }
+    h1 {
+      text-align: center;
+      padding-top: 20px;
+      z-index: 5;
+    }
+    h2 {
+      font-size: 40px;
+      color: white;
+      text-align: center;
+      padding-top: 50px;
+      z-index: 5;
+    }
+    h4 {
+      font-size: 30px;
+    }
+    th {
+      color: white;
+    }
+    td {
+      color: white;
+    }
+    label {
+      font-size: 20px;
+    }
+    .big-word {
+      font-size: 23px;
+    }
+    .form-check {
+      display: flex;
+      align-items: center;
+    }
+    .form-check-input {
+      margin-top: 0px;
+    }
+    .taxi-check {
+      padding-top: 3px;
+    }
+    .left-padding {
+      padding-left: 80px;
+    }
+    .center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      width: 40%;
+    }
+    input[type="number"] {
+      height: 40px;
+      width: 200px;
+    }
+    input[type="number"]:hover::-webkit-inner-spin-button {
+      width: 100px;
+      height: 40px;
+    }
+    .plus-minus-input {
+      -webkit-align-items: center;
+      -ms-flex-align: center;
+      align-items: center;
+    }
+    .plus-minus-input .input-group-field {
+      text-align: center;
+      margin-left: 0.5rem;
+      margin-right: 0.5rem;
+      padding: 1rem;
+    }
+    .popup {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+    .popup .popuptext {
+      visibility: hidden;
+      width: 160px;
+      background-color: #555;
+      color: #fff;
+      text-align: center;
+      border-radius: 6px;
+      padding: 8px 0;
+      position: absolute;
+      z-index: 1;
+      bottom: 125%;
+      left: 50%;
+      margin-left: -80px;
+    }
+    /* Popup arrow */
+    .popup .popuptext::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      margin-left: -5px;
+      border-width: 5px;
+      border-style: solid;
+      border-color: #555 transparent transparent transparent;
+    }
+    /* Toggle this class - hide and show the popup */
+    .popup .show {
+      visibility: visible;
+      -webkit-animation: fadeIn 1s;
+      animation: fadeIn 1s;
+    }
+    .active {
+      color: white;
+    }
+    /* Add animation (fade in the popup) */
+    @-webkit-keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+  </style>
+  <script>
+    // Plus minus
+    jQuery(document).ready(function () {
+      $('[data-quantity="plus"]').click(function (e) {
+        e.preventDefault();
+        fieldName = $(this).attr("data-field");
+        var currentVal = parseInt($("input[name=" + fieldName + "]").val());
+        if (!isNaN(currentVal)) {
+          $("input[name=" + fieldName + "]").val(currentVal + 1);
+        } else {
+          $("input[name=" + fieldName + "]").val(0);
+        }
+      });
+
+      $('[data-quantity="minus"]').click(function (e) {
+        e.preventDefault();
+        fieldName = $(this).attr("data-field");
+        var currentVal = parseInt($("input[name=" + fieldName + "]").val());
+        if (!isNaN(currentVal) && currentVal > 0) {
+          $("input[name=" + fieldName + "]").val(currentVal - 1);
+        } else {
+          $("input[name=" + fieldName + "]").val(0);
+        }
+      });
+    });
+
+    // Only allow numbers
+    function isNumber(evt) {
+      evt = evt ? evt : window.event;
+      var charCode = evt.which ? evt.which : evt.keyCode;
+      if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+        return false;
+      }
+      return true;
+    }
+    function myFunction() {
+      var popup = document.getElementById("myPopup");
+      popup.classList.toggle("show");
+    }
+    $(function () {
+      $("a").each(function () {
+        if ($(this).prop("href") == window.location.href) {
+          $(this).addClass("active");
+          $(this).parents("li").addClass("active");
+        }
+      });
+    });
+  </script>
+</html>

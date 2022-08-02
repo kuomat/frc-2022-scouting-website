@@ -1,0 +1,112 @@
+{% extends "base.html" %} {% block content %}
+
+<div class="container-fluid">
+  <br />
+  <!--Search bar-->
+  <form autocomplete="off" method="POST">
+    <div class="d-flex justify-content-center text-center">
+      <input
+        class="text-center"
+        id="ticketNum"
+        type="number"
+        name="searched_team"
+        placeholder="0"
+      />
+      <button type="submit" class="btn btn-primary">Search</button>
+    </div>
+  </form>
+
+  <!--Table-->
+  <div class="row pb-5">
+    <div class="col-md-12 col-lg-12">
+      <table class="my-4 table">
+        <tr class="border text-center">
+          <th class="border">Team</th>
+          <th class="border">Round</th>
+          <th class="border">Alliance</th>
+
+          <th>&emsp;&emsp;</th>
+
+          <th>Auton</th>
+          <th class="border">Starting_Pos</th>
+          <th class="border">Taxi</th>
+          <th class="border">Upper_In</th>
+          <th class="border">Upper_Missed</th>
+          <th class="border">Upper_Unreliable</th>
+          <th class="border">Lower_In</th>
+          <th class="border">Lower_Missed</th>
+          <th class="border">Lower_Unreliable</th>
+
+          <th>&emsp;&emsp;</th>
+
+          <th>Teleop</th>
+          <th class="border">Upper_In</th>
+          <th class="border">Upper_Missed</th>
+          <th class="border">Upper_Unreliable</th>
+          <th class="border">Lower_In</th>
+          <th class="border">Lower_Missed</th>
+          <th class="border">Lower_Unreliable</th>
+          <th class="border">Hang</th>
+
+          <th>&emsp;&emsp;</th>
+
+          <th>Results</th>
+          <th class="border">C_Bonus</th>
+          <th class="border">H_Bonus</th>
+
+          <th>&emsp;&emsp;</th>
+
+          <th>Add. Notes</th>
+          <th class="border">Notes</th>
+          <th class="border">Delete</th>
+        </tr>
+
+        {% for datum in data %}
+        <tr class="border text-center">
+          <td class="border">{{ datum.team }}</td>
+          <td class="border">{{ datum.round }}</td>
+          <td class="border">{{ datum.alliance }}</td>
+
+          <td></td>
+          <td>--></td>
+          <td class="border">{{ datum.starting_pos }}</td>
+          <td class="border">{{ datum.taxi }}</td>
+          <td class="border">{{ datum.auton_upper_in }}</td>
+          <td class="border">{{ datum.auton_upper_missed }}</td>
+          <td class="border">{{ datum.auton_upper_unreliable }}</td>
+          <td class="border">{{ datum.auton_lower_in }}</td>
+          <td class="border">{{ datum.auton_lower_missed }}</td>
+          <td class="border">{{ datum.auton_lower_unreliable }}</td>
+
+          <td></td>
+          <td>--></td>
+          <td class="border">{{ datum.tele_upper_in }}</td>
+          <td class="border">{{ datum.tele_upper_missed }}</td>
+          <td class="border">{{ datum.tele_upper_unreliable }}</td>
+          <td class="border">{{ datum.tele_lower_in }}</td>
+          <td class="border">{{ datum.tele_lower_missed }}</td>
+          <td class="border">{{ datum.tele_lower_unreliable }}</td>
+          <td class="border">{{ datum.hang }}</td>
+
+          <td></td>
+          <td>{{ datum.win }}</td>
+          <td class="border">{{ datum.cargo_bonus }}</td>
+          <td class="border">{{ datum.hangar_bonus }}</td>
+
+          <td></td>
+          <td>--></td>
+          <td class="border">{{ datum.notes }}</td>
+
+          <td>
+            <button type="delete" class="btn btn-light">
+              <a href="{{ url_for('auth.delete', id=datum.id) }}">Delete</a>
+            </button>
+          </td>
+        </tr>
+        {% endfor %}
+      </table>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

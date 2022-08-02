@@ -1,0 +1,396 @@
+{% extends "base.html" %}
+
+{% block content %}
+<form autocomplete="OFF" method="POST">
+  <br />
+  <!--Essential information-->
+    <div class="container justify-content-center text-center col-sm-12 col-md-4 col-lg-4 col-xl-4 mx-auto">
+        <!--Round number-->
+        <div class="form-group">
+            <label for="round">Round Number</label>
+            <input class="form-control text-center" type="round" id="round" name="round" placeholder="Eg. 3" onkeypress="return isNumber(event)">
+        </div>
+        
+        <!--Team number-->
+        <div class="form-group">
+            <label for="tags">Team Number</label>
+            <select class="form-control text-center" type="team" id="team" name="team">
+                {% for team in all_teams %}
+                <option value="{{team}}">{{team}}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <!--Alliance-->
+        <div class="form-group">
+            <label for="alliance">Alliance</label>
+            <select class="form-control text-center" type="alliance" id="alliance" name="alliance">
+                <option value="Red">Red Alliance</option>
+                <option value="Blue">Blue Alliance</option>
+            </select>
+        </div>
+    </div>
+    <br />
+
+
+    <!--Autonomous-->
+    <h1>Autonomous</h1>
+    <div class="container-md">  
+        <!--Starting position-->
+        <div class="border col-sm-12 col-md-6 col-lg-6 col-xl-6 mx-auto my-3">
+            <div class="big-word justify-content-center">
+                <div class="col text-center"><strong>Starting Position</strong></div>
+            </div>
+
+            <!--Options-->
+            <div class="col big-word col-xl-6 justify-content-center form-group mx-auto my-2">
+                <select class="form-control text-center" id="starting_pos" name="starting_pos">
+                    <option>Left</option>
+                    <option>Right</option>
+                    <option>Middle</option>
+                </select>
+            </div>
+        </div>        
+
+        <!--Taxi-->
+        <div class="border col-sm-12 col-md-6 col-lg-6 col-xl-6 mx-auto my-3">
+            <div class="big-word justify-content-center">
+                <div class="col text-center"><strong>Taxi</strong></div>
+            </div>
+
+            <!--Options-->
+            <div class="col big-word col-xl-6 justify-content-center form-group mx-auto my-2">
+                <select class="form-control text-center" id="taxi" name="taxi">
+                    <option>Yes</option>
+                    <option>No</option>
+                </select>
+            </div>
+        </div>
+
+        <!--Upper-->
+        <div class="border col-sm-12 col-md-6 col-lg-6 col-xl-6 mx-auto my-3">
+            <div class="row big-word justify-content-center">
+                <div class="col text-center"><strong>Upper Hub</strong></div>
+            </div>
+            
+            <!--In-->            
+            <div class="row my-1 big-word justify-content-center">
+                <div class="col text-center">Shot in</div>
+
+                <!--Plus/Minus-->
+                <div class="col justify-content-center col-4 input-group"> 
+                    <!--Minus-->   
+                    <div class="input-group-prepend">
+                        <button class="btn btn-secondary" type="button" data-quantity="minus" data-field="auton_upper_in">
+                            <i class="fa fa-minus" aria-hidden="true"></i></span>
+                        </button>  
+                    </div>
+                    <input class="border text-center input-num" type="number" id="auton_upper_in" name="auton_upper_in" value="0" step="1" readonly>
+
+                    <!--Plus-->
+                    <div class="input-group-append">
+                        <button class="btn btn-secondary" type="button" data-quantity="plus" data-field="auton_upper_in">
+                            <i class="fa fa-plus" aria-hidden="true"></i>
+                        </button>  
+                    </div>
+                </div>
+            </div>
+
+            <!--Missed-->
+            <div class="my-3 row my-1 big-word justify-content-center">
+                <div class="col text-center">Missed</div>
+
+                <!--Plus/Minus-->
+                <div class="col justify-content-center col-4 input-group"> 
+                    <!--Minus-->   
+                    <div class="input-group-prepend">
+                        <button class="btn btn-secondary" type="button" data-quantity="minus" data-field="auton_upper_missed">
+                            <i class="fa fa-minus" aria-hidden="true"></i></span>
+                        </button>  
+                    </div>
+                    <input class="border text-center input-num" type="number" id="auton_upper_missed" name="auton_upper_missed" value="0" step="1" readonly>
+
+                    <!--Plus-->
+                    <div class="input-group-append">
+                        <button class="btn btn-secondary" type="button" data-quantity="plus" data-field="auton_upper_missed">
+                            <i class="fa fa-plus" aria-hidden="true"></i>
+                        </button>  
+                    </div>
+                </div>
+            </div>
+
+            <!--Unreliable-->
+            <div class="row justify-content-center big-word"> 
+                <div class="col d-flex justify-content-center form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="auton_unreliable_upper" name="auton_unreliable_upper" value="Unreliable">
+                    <label class="form-check-label" for="unreliable_upper">Unreliable</label>
+                </div>
+            </div>
+        </div>
+
+        <!--Lower-->
+        <div class="border col-sm-12 col-md-6 col-lg-6 col-xl-6 mx-auto my-3">
+            <div class="row big-word justify-content-center">
+                <div class="col text-center"><strong>Lower Hub</strong></div>
+            </div>
+            
+            <!--In-->            
+            <div class="row my-1 big-word justify-content-center">
+                <div class="col text-center">Shot in</div>
+
+                <!--Plus/Minus-->
+                <div class="col justify-content-center col-4 input-group"> 
+                    <!--Minus-->   
+                    <div class="input-group-prepend">
+                        <button class="btn btn-secondary" type="button" data-quantity="minus" data-field="auton_lower_in">
+                            <i class="fa fa-minus" aria-hidden="true"></i></span>
+                        </button>  
+                    </div>
+                    <input class="border text-center input-num" type="number" id="auton_lower_in" name="auton_lower_in" value="0" step="1" readonly>
+
+                    <!--Plus-->
+                    <div class="input-group-append">
+                        <button class="btn btn-secondary" type="button" data-quantity="plus" data-field="auton_lower_in">
+                            <i class="fa fa-plus" aria-hidden="true"></i>
+                        </button>  
+                    </div>
+                </div>
+            </div>
+
+            <!--Missed-->
+            <div class="my-3 row my-1 big-word justify-content-center">
+                <div class="col text-center">Missed</div>
+
+                <!--Plus/Minus-->
+                <div class="col justify-content-center col-4 input-group"> 
+                    <!--Minus-->   
+                    <div class="input-group-prepend">
+                        <button class="btn btn-secondary" type="button" data-quantity="minus" data-field="auton_lower_missed">
+                            <i class="fa fa-minus" aria-hidden="true"></i></span>
+                        </button>  
+                    </div>
+                    <input class="border text-center input-num" type="number" id="auton_lower_missed" name="auton_lower_missed" value="0" step="1" readonly>
+
+                    <!--Plus-->
+                    <div class="input-group-append">
+                        <button class="btn btn-secondary" type="button" data-quantity="plus" data-field="auton_lower_missed">
+                            <i class="fa fa-plus" aria-hidden="true"></i>
+                        </button>  
+                    </div>
+                </div>
+            </div>
+
+            <!--Unreliable-->
+            <div class="row justify-content-center big-word"> 
+                <div class="col d-flex justify-content-center form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="auton_unreliable_lower" name="auton_unreliable_lower" value="Unreliable">
+                    <label class="form-check-label" for="unreliable_lower">Unreliable</label>
+                </div>
+            </div>
+        </div>
+        <br />
+    </div>
+
+    <!--Teleop-->
+    <h1>Teleop</h1>
+    <div class="container-md">    
+        <!--Upper-->
+        <div class="border col-sm-12 col-md-6 col-lg-6 col-xl-6 mx-auto my-3">
+            <div class="row big-word justify-content-center">
+                <div class="col text-center"><strong>Upper Hub</strong></div>
+            </div>
+            
+            <!--In-->            
+            <div class="row my-1 big-word justify-content-center">
+                <div class="col text-center">Shot in</div>
+
+                <!--Plus/Minus-->
+                <div class="col justify-content-center col-4 input-group"> 
+                    <!--Minus-->   
+                    <div class="input-group-prepend">
+                        <button class="btn btn-secondary" type="button" data-quantity="minus" data-field="tele_upper_in">
+                            <i class="fa fa-minus" aria-hidden="true"></i></span>
+                        </button>  
+                    </div>
+                    <input class="border text-center input-num" type="number" id="tele_upper_in" name="tele_upper_in" value="0" step="1" readonly>
+
+                    <!--Plus-->
+                    <div class="input-group-append">
+                        <button class="btn btn-secondary" type="button" data-quantity="plus" data-field="tele_upper_in">
+                            <i class="fa fa-plus" aria-hidden="true"></i>
+                        </button>  
+                    </div>
+                </div>
+            </div>
+
+            <!--Missed-->
+            <div class="my-3 row my-1 big-word justify-content-center">
+                <div class="col text-center">Missed</div>
+
+                <!--Plus/Minus-->
+                <div class="col justify-content-center col-4 input-group"> 
+                    <!--Minus-->   
+                    <div class="input-group-prepend">
+                        <button class="btn btn-secondary" type="button" data-quantity="minus" data-field="tele_upper_missed">
+                            <i class="fa fa-minus" aria-hidden="true"></i></span>
+                        </button>  
+                    </div>
+                    <input class="border text-center input-num" type="number" id="tele_upper_missed" name="tele_upper_missed" value="0" step="1" readonly>
+
+                    <!--Plus-->
+                    <div class="input-group-append">
+                        <button class="btn btn-secondary" type="button" data-quantity="plus" data-field="tele_upper_missed">
+                            <i class="fa fa-plus" aria-hidden="true"></i>
+                        </button>  
+                    </div>
+                </div>
+            </div>
+
+            <!--Unreliable-->
+            <div class="row justify-content-center big-word"> 
+                <div class="col d-flex justify-content-center form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="tele_unreliable_upper" name="tele_unreliable_upper" value="Unreliable">
+                    <label class="form-check-label" for="unreliable_upper">Unreliable</label>
+                </div>
+            </div>
+        </div>
+
+        <!--Lower-->
+        <div class="border col-sm-12 col-md-6 col-lg-6 col-xl-6 mx-auto my-3">
+            <div class="row big-word justify-content-center">
+                <div class="col text-center"><strong>Lower Hub</strong></div>
+            </div>
+            
+            <!--In-->            
+            <div class="row my-1 big-word justify-content-center">
+                <div class="col text-center">Shot in</div>
+
+                <!--Plus/Minus-->
+                <div class="col justify-content-center col-4 input-group"> 
+                    <!--Minus-->   
+                    <div class="input-group-prepend">
+                        <button class="btn btn-secondary" type="button" data-quantity="minus" data-field="tele_lower_in">
+                            <i class="fa fa-minus" aria-hidden="true"></i></span>
+                        </button>  
+                    </div>
+                    <input class="border text-center input-num" type="number" id="tele_lower_in" name="tele_lower_in" value="0" step="1" readonly>
+
+                    <!--Plus-->
+                    <div class="input-group-append">
+                        <button class="btn btn-secondary" type="button" data-quantity="plus" data-field="tele_lower_in">
+                            <i class="fa fa-plus" aria-hidden="true"></i>
+                        </button>  
+                    </div>
+                </div>
+            </div>
+
+            <!--Missed-->
+            <div class="my-3 row my-1 big-word justify-content-center">
+                <div class="col text-center">Missed</div>
+
+                <!--Plus/Minus-->
+                <div class="col justify-content-center col-4 input-group"> 
+                    <!--Minus-->   
+                    <div class="input-group-prepend">
+                        <button class="btn btn-secondary" type="button" data-quantity="minus" data-field="tele_lower_missed">
+                            <i class="fa fa-minus" aria-hidden="true"></i></span>
+                        </button>  
+                    </div>
+                    <input class="border text-center input-num" type="number" id="tele_lower_missed" name="tele_lower_missed" value="0" step="1" readonly>
+
+                    <!--Plus-->
+                    <div class="input-group-append">
+                        <button class="btn btn-secondary" type="button" data-quantity="plus" data-field="tele_lower_missed">
+                            <i class="fa fa-plus" aria-hidden="true"></i>
+                        </button>  
+                    </div>
+                </div>
+            </div>
+
+            <!--Unreliable-->
+            <div class="row justify-content-center big-word"> 
+                <div class="col d-flex justify-content-center form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="tele_unreliable_lower" name="tele_unreliable_lower" value="Unreliable">
+                    <label class="form-check-label" for="unreliable_lower">Unreliable</label>
+                </div>
+            </div>
+        </div>
+
+        <!--Endgame-->
+        <div class="border col-sm-12 col-md-6 col-lg-6 col-xl-6 mx-auto my-3">
+            <div class="big-word justify-content-center">
+                <div class="col text-center"><strong>Endgame</strong></div>
+            </div>
+            
+            <!--Hang-->
+            <div class="col big-word justify-content-center text-center">Hang</div>
+
+            <!--Select hang status-->
+            <div class="col col-xl-6 my-2 mx-auto justify-content-center big-word form-group">
+                <select class="form-control text-center" id="hang" name="hang">
+                    <option>Attempted</option>
+                    <option>Low</option>
+                    <option>Mid</option>
+                    <option>High</option>
+                    <option>Traversal</option>
+                </select>
+            </div>
+        </div>
+
+        <!--Results-->
+        <div class="border col-sm-12 col-md-6 col-lg-6 col-xl-6 mx-auto my-3">
+            <div class="big-word justify-content-center">
+                <div class="col text-center"><strong>Results</strong></div>
+            </div>
+            
+            <!--Win/Lose-->
+            <div class="col col-xl-6 my-2 mx-auto justify-content-center big-word form-group">
+                <select class="form-control text-center" id="win" name="win">
+                    <option>Win</option>
+                    <option>Loss</option>
+                    <option>Tie</option>
+                </select>
+            </div>
+            <div class="row justify-content-center big-word"> 
+                <div class="col d-flex justify-content-center col-sm-12 col-md-6 col-lg-6 col-xl-6 form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="cargo_bonus" name="cargo_bonus" value="Yes">
+                    <label class="form-check-label" for="cargo_bonus">C_Bonus</label>
+                </div>
+            </div>
+            <div class="row justify-content-center big-word"> 
+                <div class="col d-flex justify-content-center col-sm-12 col-md-6 col-lg-6 col-xl-6 form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="hangar_bonus" name="hangar_bonus" value="Yes">
+                    <label class="form-check-label" for="hangar_bonus">H_Bonus</label>
+                </div>
+            </div>
+        </div>
+        <br />
+    </div>
+
+    <!--Additional Notes-->
+    <h1>Additional Information</h1>
+    <div class="container-md">  
+        <div class="border col-sm-12 col-md-6 col-lg-6 col-xl-6 mx-auto my-3">
+            <div class="justify-content-center">
+                <div class="col text-center popup" onclick="myFunction()"><strong class="big-word">Notes</strong>
+                    <span class="popuptext" id="myPopup">a. Bot type: Low/tall shooting bot /defense bot / climb bot <br /> b. If robot does not work <br /> c. Frequency of fouls <br /> d. Driver skills <br /> e. Any special mechanisms
+                    </span>
+                </div>
+            </div>
+            <div class="form-group">
+                <textarea class="my-3 form-control" id="notes" name=notes rows="3"></textarea>
+            </div>
+        </div>
+
+
+    <!--Submit button-->
+    <div class="container">
+        <div class="row">
+          <div class="col text-center">
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </div>
+        </div>
+        <br />
+    </div>
+</form>
+{% endblock %}
